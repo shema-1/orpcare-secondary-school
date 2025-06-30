@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Orpcare Secondary School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="school.css"> 
+
+  <style>
+    /* Fade-in Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .appear {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Card Hover Zoom */
+    .card {
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Smooth slider */
+    .slider-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar fade-in">
+    <img src="logo2.png" alt="School Logo" class="logo" />
+    <h1 class="title">ORPCARE SECONDARY SCHOOL</h1>
+    <div class="search-icon">🔍</div>
+  </header>
+
+  <nav class="nav-bar fade-in">
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    <ul id="navMenu">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="admission.html">Admissions</a></li>
+      <li><a href="academics.html">Academics</a></li>
+      <li><a href="student.html">Student Life</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="apply.html" class="apply-btn">APPLY NOW</a></li>
+    </ul>
+  </nav>
+
+  <!-- Slider -->
+  <div class="slider fade-in">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide"><img src="bulding 5.jpg" alt="Slide 1" /></div>
+      <div class="slide"><img src="child.jpg" alt="Slide 2" /></div>
+      <div class="slide"><img src="kid 4.jpg" alt="Slide 3" /></div>
+      <div class="slide"><img src="kid 5.jpg" alt="Slide 4" /></div>
+      <div class="slide"><img src="ggg.png" alt="Slide 5" /></div>
+    </div>
+    <button class="btn btn-left" onclick="moveSlide(-1)">❮</button>
+    <button class="btn btn-right" onclick="moveSlide(1)">❯</button>
+  </div>
+
+  <!-- Vision & Mission -->
+  <section class="vision-mission fade-in">
+    <div class="vision-content">
+      <h1>Our Vision</h1>
+      <h2>Raising generations of Christian Leaders</h2>
+      <h1>Our Mission</h1>
+      <p>
+        Raising the next generation in fear of God while providing holistic Christian education that promotes academic excellence and character development.
+      </p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section fade-in">
+    <div class="about-text">
+      <h2>About OPSS - K</h2>
+      <hr />
+      <p>
+        Welcome to Orpcare Primary and Secondary School. We offer a value-based, child-centered curriculum that supports the holistic development of every child. Orpcare Secondary School is a reputable educational institution located in Kayonza District, Eastern Province, Rwanda. Established in 2008 by Gakwaya Leonard, the school began with humble beginnings, initially renting classrooms before constructing its own facilities. Over the years, it has expanded to offer education from nursery through to secondary levels, including day and boarding options.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="kid 4.jpg" alt="Happy child learning at school">
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <h2 style="text-align:center;" class="fade-in">OUR PROGRAMS</h2>
+  <div class="container fade-in">
+    <div class="card">
+      <img src="primary school.jpeg" alt="Primary" />
+      <h3>Primary Section</h3>
+      <p>Strong foundation in academics and social skills.</p>
+    </div>
+    <div class="card">
+      <img src="ggg.png" alt="Secondary" />
+      <h3>Secondary Section</h3>
+      <p>O-Level and A-Level with comprehensive learning paths.</p>
+    </div>
+  </div>
+
+  <h2 style="text-align:center; margin-top: 60px;" class="fade-in">MEET OUR TEAM</h2>
+  <div class="container fade-in" style="justify-content: center;">
+    <div class="card">
+      <img src="principal.png" alt="Olivia" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
+      <h3>Eric Rugamba,<br>Principal</h3>
+      <p>Leading Orpcare Secondary School is both an honor and a responsibility. I strive to ensure that every student receives a quality education rooted in discipline, innovation, and care.</p>
+    </div>
+    <div class="card">
+      <img src="shema.png" alt="Jane" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
+      <h3>Frank Mukunzi,<br>Head Master</h3>
+      <p>As the Headmaster of Orpcare Secondary School, I am committed to upholding high standards of academic excellence and personal discipline.</p>
+    </div>
+    <div class="card">
+      <img src="shema2.png" alt="Kate" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
+      <h3>Shema Prince,<br>Director of studies</h3>
+      <p>As Director of Studies at Orpcare Secondary School, I ensure that our academic programs are rigorous, relevant, and responsive to student needs.</p>
+    </div>
+  </div>
+
+  <!-- News -->
+  <h2 style="text-align:center; margin-top: 60px;" class="fade-in">LATEST NEWS</h2>
+  <div class="container fade-in">
+    <div class="card">
+      <img src="Screenshot 2025-05-01 181106.png" alt="News Image 1">
+      <h3>Trip</h3>
+      <p>Learning goes beyond the classroom — and today is proof! May this journey be full of fun, friendship, and unforgettable memories. Safe travels!</p>
+    </div>
+    <div class="card">
+      <img src="orpcare library.jpg" alt="News Image 2">
+      <h3>New Library Block Inaugurated</h3>
+      <p>A modern library with digital learning facilities has been launched, enhancing access to academic resources for all students and staff.</p>
+    </div>
+    <div class="card">
+      <img src="ggg.png" alt="News Image 3">
+      <h3>Graduation ceremony</h3>
+      <p>Congratulations to our S3 students! Carry with you the lessons, discipline, and values learned at Orpcare. Shine on!</p>
+    </div>
+  </div>
+
+  <!-- Competitions -->
+  <h2 style="text-align:center;" class="fade-in">Competitions</h2>
+  <div class="news-container fade-in">
+    <div class="card">
+      <img src="orpcare library.jpg" alt="News 1" />
+      <h3>Reading Competitions</h3>
+      <p>Our new library was inaugurated this month that there is reading Competitions.</p>
+    </div>
+    <div class="card">
+      <img src="orpcare sports.png" alt="News 2" />
+      <h3>Annual Sports Day</h3>
+      <p>Students participated in the annual sports competition.</p>
+    </div>
+    <div class="card">
+      <img src="lll.png" alt="News 3" />
+      <h3>Science experiment</h3>
+      <p>Innovative projects displayed by students.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer fade-in">
+    <div class="footer-container">
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="admission.html">Admissions</a></li>
+          <li><a href="academics.html">Academics</a></li>
+          <li><a href="student.html">Student Life</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Address: Kayonza District, Rwanda</p>
+        <p>Email: info@orpcare.edu.rw</p>
+        <p>Phone: +250 123 456 789</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Orpcare Secondary School. All rights reserved.
+      <p>Developed & designed by SHEMA PRINCE</p>
+    </div>
+  </footer>
+
+  <script>
+    const sliderTrack = document.getElementById("sliderTrack");
+    const totalSlides = document.querySelectorAll(".slide").length;
+    let currentIndex = 0;
+
+    function moveSlide(step) {
+      currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+      updateSliderPosition();
+    }
+
+    function updateSliderPosition() {
+      sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Auto Slide
+    setInterval(() => {
+      moveSlide(1);
+    }, 3000);
+
+    function toggleMenu() {
+      const navMenu = document.getElementById("navMenu");
+      navMenu.classList.toggle("show");
+    }
+
+    // Fade in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+
+</body>
+</html>

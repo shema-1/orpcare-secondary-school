@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>School Admission Form</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    form {
+      background: #fff;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #34495e;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="tel"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="date"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus,
+    input[type="file"]:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .radio-group {
+      margin-bottom: 18px;
+    }
+    .radio-group label {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: normal;
+      color: #2c3e50;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 0;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .success-message {
+      background: #2ecc71;
+      color: white;
+      padding: 15px;
+      border-radius: 6px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+    @media (max-width: 640px) {
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>School Admission Form</h2>
+  <form id="admissionForm" novalidate>
+    <label for="studentName">Student Full Name *</label>
+    <input type="text" id="studentName" name="studentName" placeholder="Enter full name" required />
+
+    <label for="dob">Date of Birth *</label>
+    <input type="date" id="dob" name="dob" required max="<?= new Date().toISOString().split('T')[0] ?>" />
+
+    <div class="radio-group">
+      <label>Gender *</label>
+      <label><input type="radio" name="gender" value="Male" required /> Male</label>
+      <label><input type="radio" name="gender" value="Female" /> Female</label>
+      <label><input type="radio" name="gender" value="Other" /> Other</label>
+    </div>
+
+    <label for="grade">Grade Applying For *</label>
+    <select id="grade" name="grade" required>
+      <option value="" disabled selected>Select grade</option>
+      <option value="Nursery">Nursery</option>
+      <option value="Kindergarten">Kindergarten</option>
+      <option value="Grade 1">Grade 1</option>
+      <option value="Grade 2">Grade 2</option>
+      <option value="Grade 3">Grade 3</option>
+      <option value="Grade 4">Grade 4</option>
+      <option value="Grade 5">Grade 5</option>
+      <option value="Grade 6">Grade 6</option>
+      <option value="Grade 7">Grade 7</option>
+      <option value="Grade 8">Grade 8</option>
+      <option value="Grade 9">Grade 9</option>
+      <option value="Grade 10">Grade 10</option>
+      <option value="Grade 11">Grade 11</option>
+      <option value="Grade 12">Grade 12</option>
+    </select>
+
+    <label for="parentName">Parent/Guardian Full Name *</label>
+    <input type="text" id="parentName" name="parentName" placeholder="Enter full name" required />
+
+    <label for="parentPhone">Parent/Guardian Phone Number *</label>
+    <input type="tel" id="parentPhone" name="parentPhone" placeholder="+250 7XX XXX XXX" pattern="^\+?[\d\s\-]{9,15}$" required />
+
+    <label for="parentEmail">Parent/Guardian Email *</label>
+    <input type="email" id="parentEmail" name="parentEmail" placeholder="example@mail.com" required />
+
+    <label for="address">Home Address *</label>
+    <textarea id="address" name="address" placeholder="Enter home address" required></textarea>
+
+    <label for="previousSchool">Previous School (if any)</label>
+    <input type="text" id="previousSchool" name="previousSchool" placeholder="Enter previous school name" />
+
+    <label for="documents">Upload Birth Certificate or Previous Report Card *</label>
+    <input type="file" id="documents" name="documents" accept=".pdf,.jpg,.jpeg,.png" required />
+
+    <button type="submit">Submit Admission Form</button>
+    <div class="success-message" id="successMessage">Thank you! Your admission form has been submitted successfully.</div>
+  </form>
+
+  <script>
+    const form = document.getElementById('admissionForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      // Basic validation (HTML5 validation should handle most)
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Additional validation example: check if file selected
+      const fileInput = document.getElementById('documents');
+      if (!fileInput.files.length) {
+        alert('Please upload required documents.');
+        fileInput.focus();
+        return;
+      }
+
+      // If all validations pass:
+      // Here you can send form data to server via AJAX/fetch, for now just show success message
+      form.style.display = 'none';
+      successMessage.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
