@@ -3,161 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily School Life - OPSS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <title>Student Daily Life</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #2c3e50;
-      padding: 30px 20px;
-      min-height: 100vh;
+      background: #f4f6f8;
+      color: #333;
     }
 
     header {
+      background: #4a90e2;
+      color: white;
+      padding: 2rem;
       text-align: center;
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 40px;
-      color: #002d5a;
-      position: relative;
-      padding-bottom: 10px;
+      animation: slideDown 1s ease-out;
     }
 
-    header::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 4px;
-      margin: 15px auto 0;
-      background: #0056b3;
-      border-radius: 2px;
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .grid-container {
+    section {
+      padding: 3rem 10%;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #4a90e2;
+      margin-bottom: 1.5rem;
+    }
+
+    .routine, .activities {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .card {
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      transform: translateY(40px);
-      opacity: 0;
-      animation: fadeUp 1s ease-out forwards;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
     }
-
+    
     .card img {
       width: 100%;
+      border-radius: 10px;
+      height: 180px; 
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
       height: 200px;
       object-fit: cover;
-      display: block;
+      transition: 0.4s ease;
     }
 
-    .label {
-      padding: 15px;
-      background-color: #f8f9fa;
-      color: #333;
-      font-weight: bold;
-      font-size: 1.1rem;
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #2e3b4e;
+      color: white;
       text-align: center;
-      position: relative;
+      padding: 1rem;
     }
 
-    .label::before {
-      content: "★";
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #0056b3;
-      font-size: 1rem;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       header {
-        font-size: 2.2rem;
-      }
-
-      .card img {
-        height: 160px;
-      }
-
-      .label {
-        font-size: 1rem;
-        padding: 12px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 20px 15px;
-      }
-
-      header {
-        font-size: 1.8rem;
-      }
-
-      .label {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>Daily School Life</header>
+  <header>
+    <h1>Daily Student Life at Orpcare Secondary School</h1>
+    <p>Experience. Learn. Grow.</p>
+  </header>
 
-  <div class="grid-container">
-    <div class="card fadeup"><img src="orpcare.class.png" alt=""><div class="label">Daily Classroom</div></div>
-    <div class="card fadeup"><img src="ggg.png" alt=""><div class="label">Graduation 2023</div></div>
-    <div class="card fadeup"><img src="Screenshot 2025-05-01 181106.png" alt=""><div class="label">School Trip at Genocide Memorial Site</div></div>
-    <div class="card fadeup"><img src="orpcare sports.png" alt=""><div class="label">Sports After Class</div></div>
-    <div class="card fadeup"><img src="dance.jpg" alt=""><div class="label">Cultural Dancing</div></div>
-    <div class="card fadeup"><img src="lll.png" alt=""><div class="label">Science Laboratory</div></div>
-    <div class="card fadeup"><img src="orpcare library.jpg" alt=""><div class="label">Library Reading Hour</div></div>
-    <div class="card fadeup"><img src="c lab.jpg" alt=""><div class="label">Computer Lab Session</div></div>
-  </div>
+  <section>
+    <h2>🕘 Daily Routine</h2>
+    <div class="routine">
+      <div class="card">
+        <img src="orpcare students.jpg" alt="Morning Assembly">
+        <h3>Morning Assembly</h3>
+        <p>Every school day begins with a vibrant morning assembly including national anthem, prayers, and life lessons. Students present news updates, motivational talks, and creative skits.</p>
+      </div>
+      <div class="card">
+        <img src="ssss.jpg" alt="Class Time">
+        <h3>Classroom Learning</h3>
+        <p>Engaging lessons in Mathematics, Science, Languages and more. Smart boards and discussions promote active participation and understanding.</p>
+      </div>
+      <div class="card">
+        <img src="food.jpg" alt="Lunch Time">
+        <h3>Lunch Break</h3>
+        <p>Midday meals served fresh in the cafeteria. It's a moment of relaxation, bonding with friends, or quick revision before afternoon classes.</p>
+      </div>
+      <div class="card">
+        <img src="class room.png" alt="Afternoon Study">
+        <h3>Afternoon Studies</h3>
+        <p>Includes computer labs, science practicals, and homework support. Teachers provide extra help and guidance where needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Activities & Clubs</h2>
+    <div class="activities">
+      <div class="card">
+        <img src="lll.png" alt="Science Club">
+        <h3>Science Club</h3>
+        <p>Students explore real-world science by building projects, competing in fairs, and conducting environmental campaigns.</p>
+      </div>
+      <div class="card">
+        <img src="orpcare team.jpg" alt="Sports Time">
+        <h3>Sports & Fitness</h3>
+        <p>Our school values physical health through sports like football, volleyball, and athletics. We hold inter-class and inter-school tournaments.</p>
+      </div>
+      <div class="card">
+        <img src="child library.jpg" alt="ICT Club">
+        <h3>ICT & Coding Club</h3>
+        <p>Students learn web development, robotics, and participate in national hackathons. Digital literacy is a core skill we nurture.</p>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/400x300/?art,students" alt="Arts and Culture">
+        <h3>Arts & Culture</h3>
+        <p>Dancing, drama, singing and poetry help students express themselves creatively. We celebrate Rwandan culture through school events.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>📸 Life in Pictures</h2>
+    <div class="gallery">
+      <img src="orpcare nusery.jpg" alt="Classroom Moment">
+      <img src="orpcare students.jpg" alt="Library">
+      <img src="orpcare sports.png" alt="Sports">
+      <img src="good.jpg" alt="Group Study">
+      <img src="child library.jpg" alt="ICT Class">
+      <img src="dance.jpg" alt="Cultural Event">
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Orpcare Secondary School. All rights reserved.</p>
+  </footer>
 
   <script>
-    const cards = document.querySelectorAll('.fadeup');
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, index) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animationDelay = `${index * 0.1}s`;
-          entry.target.classList.remove('fadeup');
+          entry.target.style.animation = 'fadeIn 1s ease forwards';
         }
       });
-    }, {
-      threshold: 0.2
-    });
+    }, { threshold: 0.5 });
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach(card => {
+      observer.observe(card);
+    });
   </script>
 
 </body>
