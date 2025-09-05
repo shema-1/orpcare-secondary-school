@@ -4,54 +4,88 @@
   <meta charset="UTF-8">
   <title>Orpcare Community</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --primary-color: #002d5a;
       --accent-color: #ffc107;
-      --bg-color: #f8f9fa;
-      --card-bg: #ffffff;
+      --bg-light: #f8f9fa;
+      --bg-alt: #ffffff;
       --text-color: #343a40;
+      --gradient: linear-gradient(135deg, #002d5a, #004c97);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
+      background-color: var(--bg-light);
       color: var(--text-color);
+      line-height: 1.6;
     }
 
+    /* Header */
     header {
-      background-color: var(--primary-color);
+      background: var(--gradient);
       color: white;
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 32px;
+      font-size: 2.5rem;
+      font-weight: 700;
     }
 
     header p {
-      margin-top: 10px;
-      font-size: 18px;
+      margin-top: 15px;
+      font-size: 1.2rem;
       font-weight: 300;
     }
 
+    /* Sections */
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
       max-width: 1200px;
       margin: auto;
+      animation: fadeIn 1.5s ease;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-alt);
     }
 
     .section-title {
       text-align: center;
-      font-size: 30px;
+      font-size: 2rem;
       margin-bottom: 40px;
       color: var(--primary-color);
       font-weight: bold;
+      position: relative;
+      display: inline-block;
     }
 
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Cards */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -59,16 +93,23 @@
     }
 
     .card {
-      background-color: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .card img {
@@ -84,29 +125,41 @@
     .card-content h3 {
       margin: 0 0 10px;
       color: var(--primary-color);
-      font-size: 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
     }
 
     .card-content p {
       margin: 0;
-      font-size: 15px;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
 
+    /* Footer */
     footer {
-      background-color: var(--primary-color);
+      background: var(--gradient);
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       margin-top: 60px;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 6px 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 600px) {
       header h1 {
-        font-size: 24px;
+        font-size: 1.8rem;
       }
       .section-title {
-        font-size: 24px;
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -151,7 +204,7 @@
       <div class="card">
         <img src="helping.jpg" alt="Community Outreach">
         <div class="card-content">
-          <h3>volunteer projects</h3>
+          <h3>Volunteer Projects</h3>
           <p>Students engage in volunteer projects, visiting local communities, and contributing to environmental and health initiatives.</p>
         </div>
       </div>
@@ -186,12 +239,25 @@
   </section>
 
   <footer>
-    <p>&copy; <span id="year"></span> Orpcare Secondary School.</p>
-    <p>Developed & Designed by SHEMA PRINCE</p>
+    <p>&copy; <span id="year"></span> Orpcare Secondary School</p>
+    <p>Developed & Designed by <strong>SHEMA PRINCE</strong></p>
   </footer>
 
   <script>
+    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
   </script>
 
 </body>

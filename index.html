@@ -5,66 +5,225 @@
   <title>Orpcare Secondary School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="school.css"> 
 
   <style>
-    /* Fade-in Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1.2s ease-out forwards;
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    /* ===== NAVBAR ===== */
+    .nav-bar {
+      background: #003366;
+      padding: 10px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .nav-container .logo {
+      height: 50px;
+    }
+    .nav-bar ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-bar ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      position: relative;
+      padding: 6px 0;
+      transition: color 0.3s;
+    }
+    .nav-bar ul li a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: #ffcc00;
+      transition: width 0.3s;
+    }
+    .nav-bar ul li a:hover {
+      color: #ffcc00;
+    }
+    .nav-bar ul li a:hover::after {
+      width: 100%;
+    }
+    .apply-btn {
+      background: #ffcc00;
+      color: #003366 !important;
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .apply-btn:hover {
+      background: #ffd633;
+      transform: scale(1.1);
+    }
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-bar ul {
+        display: none;
+        flex-direction: column;
+        background: #003366;
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        animation: slideDown 0.3s ease;
+      }
+      .nav-bar ul.show {
+        display: flex;
       }
     }
-
-    .appear {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Card Hover Zoom */
-    .card {
-      transition: transform 0.4s ease;
+    /* ===== SLIDER ===== */
+    .slider {
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    /* Smooth slider */
     .slider-track {
       display: flex;
       transition: transform 0.6s ease-in-out;
     }
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+    .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .btn:hover {
+      transform: scale(1.2);
+    }
+    .btn-left { left: 10px; }
+    .btn-right { right: 10px; }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+    .fade-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
+    .fade-right { opacity: 0; transform: translateX(50px); transition: all 0.8s ease-out; }
+    .fade-up { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+    .zoom-in { opacity: 0; transform: scale(0.8); transition: all 0.6s ease-out; }
+    .bounce { opacity: 0; transform: scale(0.5); transition: transform 0.8s ease-out, opacity 0.8s ease-out; }
+    .appear { opacity: 1 !important; transform: translateX(0) translateY(0) scale(1) !important; }
+
+    /* Vision & Mission */
+    .vision-mission {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(to right, #003366, #0055a5);
+      color: white;
+    }
+    .vision-mission h1 { font-size: 28px; margin-bottom: 10px; }
+    .vision-mission h2 { font-size: 20px; font-weight: 400; max-width: 800px; margin: 0 auto 30px; }
+    .vision-mission p { max-width: 700px; margin: auto; font-size: 18px; }
+
+    /* About */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 40px;
+    }
+    .about-text { flex: 1; min-width: 300px; }
+    .about-text h2 { font-size: 28px; margin-bottom: 10px; color: #003366; }
+    .about-text p { font-size: 18px; line-height: 1.6; }
+    .about-image img { max-width: 400px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    /* Section Headings */
+    h2.section-title { text-align: center; font-size: 32px; margin: 60px 0 20px; color: #003366; }
+
+    /* Cards */
+    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px 40px; max-width: 1200px; margin: auto; }
+    .card { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+    .card h3 { font-size: 20px; color: #003366; margin-bottom: 10px; }
+    .card p { font-size: 16px; line-height: 1.5; }
+
+    /* Team Section */
+    .team-section .card img { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; margin: 0 auto 15px; display: block; border: 4px solid #003366; }
+    .team-section .card { padding-top: 30px; }
+
+    /* Footer */
+    .footer { background: #002244; color: white; padding: 50px 20px; margin-top: 80px; }
+    .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; gap: 40px; }
+    .footer h3 { margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
+    .footer a { color: #ffcc00; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-bottom { text-align: center; margin-top: 30px; font-size: 14px; opacity: 0.8; }
   </style>
-  
 </head>
-  <body>
+<body>
 
-  <header class="top-bar fade-in">
-    <img src="logo2.png" alt="School Logo" class="logo" />
-    <h1 class="title">ORPCARE SECONDARY SCHOOL</h1>
-    <div class="search-icon">🔍</div>
-  </header>
-
+  <!-- NAVBAR -->
   <nav class="nav-bar fade-in">
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
-    <ul id="navMenu">
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="admission.html">Admissions</a></li>
-      <li><a href="academics.html">Academics</a></li>
-      <li><a href="student.html">Student Life</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="apply.html" class="apply-btn">APPLY NOW</a></li>
-    </ul>
+    <div class="nav-container">
+      <img src="logo2.png" alt="School Logo" class="logo" />
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul id="navMenu">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="admission.html">Admissions</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="student.html">Student Life</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="apply.html" class="apply-btn">APPLY NOW</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Slider -->
+  <!-- SLIDER -->
   <div class="slider fade-in">
     <div class="slider-track" id="sliderTrack">
       <div class="slide"><img src="bulding 5.jpg" alt="Slide 1" /></div>
@@ -78,110 +237,108 @@
   </div>
 
   <!-- Vision & Mission -->
-  <section class="vision-mission fade-in">
-    <div class="vision-content">
-      <h1>Our Vision</h1>
-      <h2>Producing innovative,hardworking,discplined children with opportunities to fulfill their dreams.</h2>
-      <h1>Our Mission</h1>
-      <p>
-      Promoting equal access for both boys and girls to education and their participation in the promotion of culture and tolerance  
-      </p>
-    </div>
+  <section class="vision-mission fade-up">
+    <h1>Our Vision</h1>
+    <h2>Producing innovative, hardworking, disciplined children with opportunities to fulfill their dreams.</h2>
+    <h1>Our Mission</h1>
+    <p>
+      Promoting equal access for both boys and girls to education and their participation in the promotion of culture and tolerance.
+    </p>
   </section>
 
   <!-- About -->
-  <section class="about-section fade-in">
-    <div class="about-text">
+  <section class="about-section">
+    <div class="about-text fade-left">
       <h2>About OPSS - K</h2>
       <hr />
       <p>
         Welcome to Orpcare Primary and Secondary School. We offer a value-based, child-centered curriculum that supports the holistic development of every child. Orpcare Secondary School is a reputable educational institution located in Kayonza District, Eastern Province, Rwanda. Established in 2008 by Gakwaya Leonard, the school began with humble beginnings, initially renting classrooms before constructing its own facilities. Over the years, it has expanded to offer education from nursery through to secondary levels, including day and boarding options.
       </p>
     </div>
-    <div class="about-image">
+    <div class="about-image fade-right">
       <img src="orpcare child.png" alt="Happy child learning at school">
     </div>
   </section>
 
   <!-- Programs -->
-  <h2 style="text-align:center;" class="fade-in">OUR PROGRAMS</h2>
-  <div class="container fade-in">
-    <div class="card">
+  <h2 class="section-title bounce">OUR PROGRAMS</h2>
+  <div class="container">
+    <div class="card zoom-in">
       <img src="orpcare nusery.jpg" alt="Primary" />
       <h3>Primary Section</h3>
       <p>Strong foundation in academics and social skills.</p>
     </div>
-    <div class="card">
+    <div class="card zoom-in">
       <img src="orpcare students.jpg" alt="Secondary" />
       <h3>Secondary Section</h3>
       <p>O-Level with comprehensive learning paths.</p>
     </div>
   </div>
 
-  <h2 style="text-align:center; margin-top: 60px;" class="fade-in">MEET OUR TEAM</h2>
-  <div class="container fade-in" style="justify-content: center;">
-    <div class="card">
-      <img src="principal img.jpg" alt="Olivia" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
+  <!-- Team -->
+  <h2 class="section-title bounce">MEET OUR TEAM</h2>
+  <div class="container team-section">
+    <div class="card zoom-in">
+      <img src="principal img.jpg" alt="Principal">
       <h3>Byiringiro Joseph,<br>Principal</h3>
       <p>Leading Orpcare Secondary School is both an honor and a responsibility. I strive to ensure that every student receives a quality education rooted in discipline, innovation, and care.</p>
     </div>
-    <div class="card">
-      <img src="headmaster img.jpg" alt="Jane" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
+    <div class="card zoom-in">
+      <img src="headmaster img.jpg" alt="Headmaster">
       <h3>Mfitumukiza Gerald,<br>Head Master</h3>
       <p>As the Headmaster of Orpcare Secondary School, I am committed to upholding high standards of academic excellence and personal discipline.</p>
     </div>
-    <div class="card">
-      <img src="dos.jpg" alt="Kate" style="width:150px; height:150px; object-fit:cover; border-radius:50%; margin:auto;">
-      <h3>Byiringiro Joseph,<br>Director of studies</h3>
+    <div class="card zoom-in">
+      <img src="dos.jpg" alt="Director of Studies">
+      <h3>Byiringiro Joseph,<br>Director of Studies</h3>
       <p>As Director of Studies at Orpcare Secondary School, I ensure that our academic programs are rigorous, relevant, and responsive to student needs.</p>
     </div>
   </div>
 
   <!-- News -->
-  <h2 style="text-align:center; margin-top: 60px;" class="fade-in">LATEST NEWS</h2>
-  <div class="container fade-in">
-    <div class="card">
+  <h2 class="section-title bounce">LATEST NEWS</h2>
+  <div class="container">
+    <div class="card zoom-in">
       <img src="Screenshot 2025-05-01 181106.png" alt="News Image 1">
       <h3>Trip</h3>
       <p>Learning goes beyond the classroom — and today is proof! May this journey be full of fun, friendship, and unforgettable memories. Safe travels!</p>
     </div>
-    <div class="card">
+    <div class="card zoom-in">
       <img src="orpcare library.jpg" alt="News Image 2">
       <h3>New Library Block Inaugurated</h3>
       <p>A modern library with digital learning facilities has been launched, enhancing access to academic resources for all students and staff.</p>
     </div>
-    <div class="card">
+    <div class="card zoom-in">
       <img src="ggg.png" alt="News Image 3">
-      <h3>Graduation ceremony</h3>
+      <h3>Graduation Ceremony</h3>
       <p>Congratulations to our S3 students! Carry with you the lessons, discipline, and values learned at Orpcare. Shine on!</p>
     </div>
   </div>
 
   <!-- Competitions -->
-  <h2 style="text-align:center;" class="fade-in">Competitions</h2>
-  <div class="news-container fade-in">
-    <div class="card">
+  <h2 class="section-title bounce">COMPETITIONS</h2>
+  <div class="container">
+    <div class="card zoom-in">
       <img src="orpcare library.jpg" alt="News 1" />
       <h3>Reading Competitions</h3>
       <p>Our new library was inaugurated this month that there is reading Competitions.</p>
     </div>
-    <div class="card">
+    <div class="card zoom-in">
       <img src="orpcare team.jpg" alt="News 2" />
       <h3>Annual Sports Day</h3>
       <p>Students participated in the annual sports competition.</p>
     </div>
-    <div class="card">
+    <div class="card zoom-in">
       <img src="lll.png" alt="News 3" />
-      <h3>Science experiment</h3>
+      <h3>Science Experiment</h3>
       <p>Innovative projects displayed by students.</p>
     </div>
   </div>
-  
-  
-<!-- Footer -->
-  <footer class="footer fade-in">
+
+  <!-- Footer -->
+  <footer class="footer fade-up">
     <div class="footer-container">
-      <div class="footer-links">
+      <div>
         <h3>Quick Links</h3>
         <ul>
           <li><a href="about.html">About Us</a></li>
@@ -190,7 +347,7 @@
           <li><a href="student.html">Student Life</a></li>
         </ul>
       </div>
-      <div class="footer-contact">
+      <div>
         <h3>Contact Us</h3>
         <p>Address: Kayonza District, Rwanda</p>
         <p>Email: orpcarenpsecondaryschool@gmail.com</p>
@@ -210,43 +367,28 @@
 
     function moveSlide(step) {
       currentIndex = (currentIndex + step + totalSlides) % totalSlides;
-      updateSliderPosition();
-    }
-
-    function updateSliderPosition() {
       sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
-    // Auto Slide
-    setInterval(() => {
-      moveSlide(1);
-    }, 3000);
+    setInterval(() => { moveSlide(1); }, 4000);
 
     function toggleMenu() {
       const navMenu = document.getElementById("navMenu");
       navMenu.classList.toggle("show");
     }
 
-    // Fade in on scroll
-    const faders = document.querySelectorAll('.fade-in');
-
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    // Scroll animations
+    const appearElements = document.querySelectorAll('.fade-in, .fade-left, .fade-right, .fade-up, .zoom-in, .bounce');
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting){
           entry.target.classList.add('appear');
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1
-    });
-    
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-  </script> 
-  <script>
-    
+    }, { threshold: 0.2 });
+
+    appearElements.forEach(el => observer.observe(el));
   </script>
 
 </body>
